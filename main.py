@@ -110,8 +110,8 @@ def gradient_descent(pf, start, goal, lr=1):
     
     for i in range(200):
         #print "Epoch: ", (i + 1)
-        x = round(curr[0])
-        y = round(curr[1])
+        x = int(round(curr[0]))
+        y = int(round(curr[1]))
         pmax = 1000000
         #find the direction of max gradient
         dx = 0
@@ -278,6 +278,9 @@ if __name__ == "__main__":
     t2 = np.rad2deg(t2)
     goal = np.array([t1, t2])
     
+    start = np.array(map(lambda x: int(round(x)), start))
+    goal = np.array(map(lambda x: int(round(x)), goal))
+
     pf = PotentialField(start, goal, cspace)
     att = pf.get_attractive(ksi=args['ksi'], d=args['d'])
     rep = pf.get_repulsive(s=args['sigma'])
@@ -306,8 +309,7 @@ if __name__ == "__main__":
     plot_contour(ax3, total, start, goal, 'Potential Field')
     mng = plt.get_current_fig_manager()
     mng.window.showMaximized()
-    
-    
+     
     path = gradient_descent(total, start, goal, lr=args['lr'])
     ani = SubplotAnimation(robot, circle, cspace, args['start'], args['goal'], path, 'Potential Field Approach')
     mng = plt.get_current_fig_manager()

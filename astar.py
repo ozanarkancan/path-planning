@@ -44,8 +44,8 @@ class Astar:
         """
         self.real_start = start
         self.real_goal = goal
-        self.start = np.array([round(start[0]), round(start[1])])
-        self.goal = np.array([round(goal[0]), round(goal[1])])
+        self.start = np.array([int(round(start[0])), int(round(start[1]))])
+        self.goal = np.array([int(round(goal[0])), int(round(goal[1]))])
         self.cspace = cspace
 
     def search(self):
